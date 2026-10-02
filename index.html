@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ms. Lisa Francis | Artistic Stylist Lounge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-main: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --primary-pink: #d9777f;
+            --accent-gold: #cda873;
+            --card-bg: #1e1e1e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
+        a { text-decoration: none; color: inherit; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Header --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 0; border-bottom: 1px solid #333;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .logo-area img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+        .logo-text { font-size: 14px; font-weight: 500; }
+        .logo-text span { display: block; font-size: 11px; color: var(--text-muted); }
+
+        nav ul { display: flex; gap: 25px; list-style: none; }
+        nav a { font-size: 13px; color: var(--text-muted); transition: 0.3s; }
+        nav a:hover { color: var(--primary-pink); }
+
+        .btn-pink {
+            background-color: var(--primary-pink); color: #fff;
+            padding: 10px 20px; border-radius: 5px;
+            font-size: 13px; font-weight: 500; border: none; cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .btn-pink:hover { opacity: 0.8; }
+        
+        .btn-outline {
+            background: transparent; color: var(--text-main);
+            padding: 10px 20px; border-radius: 5px;
+            font-size: 13px; border: 1px solid #555; cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        .btn-outline:hover { border-color: var(--primary-pink); }
+
+        /* --- Hero Section --- */
+        .hero { display: flex; align-items: center; padding: 80px 0; gap: 50px; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 15px; }
+        .hero-text h1 span { color: var(--primary-pink); }
+        .hero-text h3 { font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 20px; font-style: italic; }
+        .hero-text p { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; line-height: 1.7; }
+        
+        .hero-location { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); margin-bottom: 30px; }
+        
+        .hero-image { flex: 1; text-align: right; position: relative; }
+        .hero-image img { width: 100%; max-width: 500px; border-radius: 10px; object-fit: cover; }
+        .hero-signature { position: absolute; bottom: -20px; right: 20px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; color: var(--accent-gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+
+        /* --- About Section --- */
+        .about { padding: 80px 0; border-top: 1px solid #222; display: flex; gap: 50px; }
+        .about-text { flex: 1; }
+        .about-text h4 { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; font-weight: 400; text-transform: uppercase;}
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .about-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 30px; }
+        
+        .stats { display: flex; gap: 40px; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .stat-item h3 { color: var(--primary-pink); font-size: 1.8rem; }
+        .stat-item p { font-size: 12px; color: var(--text-muted); }
+        
+        .about-gallery { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .about-gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+
+        /* --- Services Section --- */
+        .services { padding: 80px 0; border-top: 1px solid #222; }
+        .services h4 { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
+        .services h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .services > p { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; }
+
+        .service-cards { display: flex; gap: 20px; }
+        .s-card { 
+            flex: 1; height: 400px; position: relative; border-radius: 10px; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 25px;
+            transition: transform 0.3s;
+        }
+        .s-card:hover { transform: translateY(-10px); }
+        .s-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+        .s-card::after { 
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%); z-index: -1; 
+        }
+        .s-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .s-card p { font-size: 12px; color: #ccc; margin-bottom: 15px; line-height: 1.5; }
+        .s-card a { font-size: 13px; color: var(--primary-pink); font-weight: 500; }
+
+        /* --- Academy Section --- */
+        .academy { padding: 80px 0; border-top: 1px solid #222; display: flex; gap: 50px; align-items: center;}
+        .academy-text { flex: 1; }
+        .academy-text h4 { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase;}
+        .academy-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .academy-text p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;}
+        
+        .academy-list { list-style: none; margin-bottom: 30px; }
+        .academy-list li { font-size: 13px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .academy-list li::before { content: '✓'; color: var(--primary-pink); font-weight: bold;}
+        
+        .academy-img { flex: 1; }
+        .academy-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        /* --- Contact Form Section --- */
+        .contact { padding: 80px 0; border-top: 1px solid #222; display: flex; gap: 50px; }
+        .contact-text { flex: 1; }
+        .contact-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .contact-text p { font-size: 14px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6;}
+        .contact-info p { font-size: 14px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: var(--text-muted);}
+        
+        .contact-form { flex: 1; background: var(--card-bg); padding: 40px; border-radius: 10px; border: 1px solid #333;}
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width: 100%; background: rgba(0,0,0,0.2); border: 1px solid #444; color: #fff;
+            padding: 15px; margin-bottom: 15px; border-radius: 5px; font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+            outline: none; border-color: var(--primary-pink);
+        }
+        .contact-form textarea { height: 120px; resize: none; }
+        .contact-form button { width: 100%; padding: 15px; font-size: 14px; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero, .about, .academy, .contact { flex-direction: column; }
+            .service-cards { flex-direction: column; }
+            nav ul { display: none; }
+            .hero-text h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-area">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1bfd8c?auto=format&fit=crop&w=100&q=80" alt="Logo">
+                <div class="logo-text">
+                    Artistic Stylist Lounge
+                    <span>By Ms. Lisa Francis</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Academy</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="btn-pink">Book Appointment</button>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Artistry.<br>Education.<br><span>Empowerment.</span></h1>
+                <h3>By Ms. Lisa Francis</h3>
+                <p>35+ years of excellence in hair styling and cosmetology education. Empowering the next generation of beauty professionals.</p>
+                <div class="hero-location">
+                    📍 Waxahachie, Texas 75165
+                </div>
+                <button class="btn-pink" style="margin-right: 10px;">Book an Appointment</button>
+                <button class="btn-outline">Explore Academy</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Ms. Lisa Francis">
+                <span class="hero-signature">Ms. Lisa Francis</span>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="about">
+            <div class="about-text">
+                <h4>About</h4>
+                <h2>Ms. Lisa Francis</h2>
+                <p>With over 35 years in the beauty industry, Ms. Lisa Francis is a master stylist, color expert, and passionate educator. As the founder of Artistic Stylist Lounge, she has empowered thousands of clients and students through artistry, technique, and mentorship.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>35+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>2,900+</h3>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 style="color: var(--text-main);">Waxahachie</h3>
+                        <p>Texas</p>
+                    </div>
+                </div>
+                <button class="btn-outline">Learn More About Lisa</button>
+            </div>
+            <div class="about-gallery">
+                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=300&q=80" alt="Gallery">
+                <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=300&q=80" alt="Gallery">
+                <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=300&q=80" alt="Gallery">
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?auto=format&fit=crop&w=300&q=80" alt="Gallery">
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="services">
+            <h4>Services</h4>
+            <h2>Salon Services</h2>
+            <p>Premium hair care and styling services tailored to your unique beauty.</p>
+            <div class="service-cards">
+                <div class="s-card">
+                    <img src="https://images.unsplash.com/photo-1512496015851-a1fbaf692a8c?auto=format&fit=crop&w=400&q=80" alt="Haircuts">
+                    <h3>Haircuts & Precision Styling</h3>
+                    <p>Custom cuts and styling to elevate your look.</p>
+                    <a href="#">Book Now →</a>
+                </div>
+                <div class="s-card">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Color">
+                    <h3>Color & Highlights</h3>
+                    <p>Vibrant color, balayage, and dimensional looks.</p>
+                    <a href="#">Book Now →</a>
+                </div>
+                <div class="s-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Care">
+                    <h3>Treatments & Hair Care</h3>
+                    <p>Restorative treatments for healthy, gorgeous hair.</p>
+                    <a href="#">Book Now →</a>
+                </div>
+                <div class="s-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Extensions">
+                    <h3>Special Occasion & Extensions</h3>
+                    <p>Elevate your look for that special moment.</p>
+                    <a href="#">Book Now →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academy -->
+        <section class="academy">
+            <div class="academy-text">
+                <h4>Academy</h4>
+                <h2>Cosmetology Training & Mentorship</h2>
+                <p>Become a licensed professional. Learn with confidence, master the techniques, and build a thriving career under the guidance of an industry veteran.</p>
+                <ul class="academy-list">
+                    <li>State-Approved Cosmetology Training</li>
+                    <li>Hands-on Practice & Real Client Interaction</li>
+                    <li>Advanced Coloring & Cutting Techniques</li>
+                    <li>Business Mentorship & Career Guidance</li>
+                </ul>
+                <button class="btn-pink" style="margin-right: 10px;">Explore Academy</button>
+                <button class="btn-outline">Request Info</button>
+            </div>
+            <div class="academy-img">
+                <img src="https://images.unsplash.com/photo-1527736941177-226959d0820b?auto=format&fit=crop&w=600&q=80" alt="Academy Training">
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact">
+            <div class="contact-text">
+                <h4>Book or Connect</h4>
+                <h2>Let's Create Something Beautiful</h2>
+                <p>Ready for a transformation or have questions about our academy? We'd love to hear from you. Skip the DMs and let's get you in the chair.</p>
+                <div class="contact-info">
+                    <p>📞 (469) 555-0198</p>
+                    <p>✉️ info@artisticstylistlounge.com</p>
+                    <p>📍 Waxahachie, Texas 75165</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <input type="text" placeholder="Full Name">
+                <input type="tel" placeholder="Phone Number">
+                <select>
+                    <option>I'm interested in...</option>
+                    <option>Hair Styling & Color</option>
+                    <option>Cosmetology Academy Enrollment</option>
+                    <option>General Inquiry</option>
+                </select>
+                <textarea placeholder="Tell us more about what you're looking for..."></textarea>
+                <button class="btn-pink">Send Inquiry</button>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
